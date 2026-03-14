@@ -63,7 +63,7 @@ These tools retrieve data about an ecosystem. All accept `latitude` and `longitu
 
 No action tools exist yet — this is where the project gets interesting. Once an investigation surfaces a concern, an agent needs tools to do something about it. Planned additions include drafting regulatory comments, filing public records requests, and flagging violations for environmental advocacy orgs.
 
-In the meantime, you can pair this MCP with others to take action. For example, use the [Gmail MCP](https://github.com/anthropics/anthropic-cookbook/tree/main/mcp) or a legal document MCP alongside this one to move from data to action.
+In the meantime, you can pair this MCP with others to take action.
 
 ## Example
 

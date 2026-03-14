@@ -1,8 +1,22 @@
 # Speak for the Trees
 
-MCP server for investigating ecosystem health using public environmental data. Point it at any coordinates and query water quality, species observations, EPA compliance, tidal conditions, and impaired waters listings.
+If it is inevitable that we will all have agents acting on our behalf, should other living systems also have agents that represent their interests?
+
+This project explores the potential for agentic representation of ecosystems and their diverse populations. If equipped with data about the ecosystem and capital, what actions might an agent take to protect that ecosystem?
+
+- A wetland might choose to take legal action against an upstream polluter.
+- A forest might request human intervention following a rise in invasive species sightings.
+- A river might submit comments on a local proposal to build on a neighboring parcel.
+
+There are examples around the world of ecosystems being granted legal personhood, aiming to give them equal footing in modern society. Could AI better equip environmental advocates and lawyers in their pursuit of this idea?
+
+This MCP server is a starting point: a set of tools for investigating ecosystem health using public environmental data. Point it at any coordinates and query water quality, species observations, EPA compliance, tidal conditions, and impaired waters listings.
 
 No API keys needed — all data comes from free public APIs (USGS, EPA, NOAA, iNaturalist).
+
+## Demo
+
+[speakforthetrees.com](https://speakforthetrees.com) — interactive map showing the data these tools return. Click anywhere on the map to run a live investigation.
 
 ## Install
 
@@ -13,13 +27,27 @@ claude mcp add speak-for-the-trees -- npx @offtrailstudio/speak-for-the-trees
 Or from source:
 
 ```bash
-git clone https://github.com/offtrailstudio/speak-for-the-trees.git
-cd speak-for-the-trees
+git clone https://github.com/offtrailstudio/speak-for-the-trees-mcp.git
+cd speak-for-the-trees-mcp
 npm install
 claude mcp add speak-for-the-trees -- npx tsx $(pwd)/src/server.ts
 ```
 
+The data clients are also available as an npm library if you want to build your own tools on top of the same data sources:
+
+```bash
+npm install @offtrailstudio/speak-for-the-trees
+```
+
+```typescript
+import { fetchWaterData, fetchObservations, fetchImpairedWaters } from "@offtrailstudio/speak-for-the-trees";
+```
+
 ## Tools
+
+### Read
+
+These tools retrieve data about an ecosystem. All accept `latitude` and `longitude` — the server automatically discovers nearby USGS monitoring stations and NOAA tidal gauges using the USGS Network-Linked Data Index.
 
 | Tool | Data source | What it returns |
 |------|------------|-----------------|
@@ -31,7 +59,11 @@ claude mcp add speak-for-the-trees -- npx tsx $(pwd)/src/server.ts
 | `query_violation_details` | EPA ECHO | Specific effluent violations (parameter, exceedance %, dates) |
 | `query_impaired_waters` | EPA ATTAINS | 303(d) listed waters, impairment causes, TMDL status |
 
-All tools accept `latitude` and `longitude`. The server automatically discovers nearby USGS monitoring stations and NOAA tidal gauges using the USGS Network-Linked Data Index.
+### Act
+
+No action tools exist yet — this is where the project gets interesting. Once an investigation surfaces a concern, an agent needs tools to do something about it. Planned additions include drafting regulatory comments, filing public records requests, and flagging violations for environmental advocacy orgs.
+
+In the meantime, you can pair this MCP with others to take action. For example, use the [Gmail MCP](https://github.com/anthropics/anthropic-cookbook/tree/main/mcp) or a legal document MCP alongside this one to move from data to action.
 
 ## Example
 
@@ -64,10 +96,6 @@ See [AGENT.md](AGENT.md) for the full investigation methodology, including epist
 | iNaturalist | [api.inaturalist.org](https://api.inaturalist.org/) | Community science species observations |
 | EPA ATTAINS | [epa.gov/waterdata/attains](https://www.epa.gov/waterdata/attains) | Impaired waters assessments |
 | USGS NLDI | [api.water.usgs.gov/nldi](https://api.water.usgs.gov/nldi) | Hydrologic network navigation |
-
-## Demo
-
-[speakforthetrees.com](https://speakforthetrees.com) — interactive map showing the data these tools return. Click anywhere on the map to run a live investigation.
 
 ## License
 

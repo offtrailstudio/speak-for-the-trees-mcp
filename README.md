@@ -65,6 +65,10 @@ See [AGENT.md](AGENT.md) for the full investigation methodology, including epist
 | EPA ATTAINS | [epa.gov/waterdata/attains](https://www.epa.gov/waterdata/attains) | Impaired waters assessments |
 | USGS NLDI | [api.water.usgs.gov/nldi](https://api.water.usgs.gov/nldi) | Hydrologic network navigation |
 
+## Demo
+
+[speakforthetrees.com](https://speakforthetrees.com) — interactive map showing the data these tools return. Click anywhere on the map to run a live investigation.
+
 ## License
 
 [MIT](LICENSE)

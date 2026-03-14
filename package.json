@@ -22,6 +22,16 @@
   "bin": {
     "speak-for-the-trees": "./dist/server.js"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/clients/index.js",
+      "types": "./dist/clients/index.d.ts"
+    },
+    "./server": {
+      "import": "./dist/server.js",
+      "types": "./dist/server.d.ts"
+    }
+  },
   "files": [
     "dist",
     "AGENT.md",
@@ -29,7 +39,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup src/server.ts --format esm --dts",
+    "build": "tsup src/server.ts src/clients/index.ts --format esm --dts",
     "dev": "tsx src/server.ts",
     "test": "vitest run",
     "test:watch": "vitest",

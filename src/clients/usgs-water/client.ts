@@ -95,21 +95,23 @@ export async function fetchWaterData(
     };
   }
 
-  const readings: WaterReading[] = parsed.data.features.map((feature) => {
-    const props = feature.properties;
-    const code = props.parameter_code;
-    return {
-      parameterCode: code,
-      parameterName:
-        props.parameter_name ??
-        PARAMETER_CODES[code as keyof typeof PARAMETER_CODES] ??
-        code,
-      value: parseFloat(props.value),
-      unit: props.unit_of_measure,
-      time: props.time,
-      locationId: props.monitoring_location_id,
-    };
-  });
+  const readings: WaterReading[] = parsed.data.features
+    .filter((feature) => feature.properties.value !== null)
+    .map((feature) => {
+      const props = feature.properties;
+      const code = props.parameter_code;
+      return {
+        parameterCode: code,
+        parameterName:
+          props.parameter_name ??
+          PARAMETER_CODES[code as keyof typeof PARAMETER_CODES] ??
+          code,
+        value: parseFloat(props.value as string),
+        unit: props.unit_of_measure,
+        time: props.time,
+        locationId: props.monitoring_location_id,
+      };
+    });
 
   return {
     success: true,

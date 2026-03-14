@@ -10,11 +10,14 @@ export const usgsFeaturePropertiesSchema = z
     monitoring_location_id: z.string(),
     parameter_code: z.string(),
     parameter_name: z.string().optional(),
-    value: z.string(),
+    value: z.string().nullable(),
     unit_of_measure: z.string(),
     time: z.string(),
     approval_status: z.string().optional(),
-    qualifier: z.string().nullable().optional(),
+    qualifier: z.union([
+      z.string(),
+      z.array(z.string()).transform((arr) => arr.join(", ")),
+    ]).nullish(),
   })
   .passthrough();
 

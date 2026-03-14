@@ -14,7 +14,7 @@ export const iNatTaxonSchema = z
     id: z.number(),
     name: z.string(),
     rank: z.string(),
-    iconic_taxon_name: z.string().nullable(),
+    iconic_taxon_name: z.string().nullish(),
     preferred_common_name: z.string().optional(),
     ancestry: z.string().nullable(),
     wikipedia_url: z.string().nullable(),

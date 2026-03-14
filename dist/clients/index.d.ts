@@ -227,7 +227,7 @@ declare const iNatObservationSchema: z.ZodObject<{
         id: z.ZodNumber;
         name: z.ZodString;
         rank: z.ZodString;
-        iconic_taxon_name: z.ZodNullable<z.ZodString>;
+        iconic_taxon_name: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         preferred_common_name: z.ZodOptional<z.ZodString>;
         ancestry: z.ZodNullable<z.ZodString>;
         wikipedia_url: z.ZodNullable<z.ZodString>;

@@ -2,24 +2,22 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { registerWaterTool } from "./tools/water.js";
-import { registerSpeciesTool } from "./tools/species.js";
-import { registerTidalTool } from "./tools/tidal.js";
-import { registerEpaFacilitiesTool } from "./tools/epa-facilities.js";
-import { registerEpaViolationsTools } from "./tools/epa-violations.js";
-import { registerImpairedWatersTool } from "./tools/impaired-waters.js";
+import { registerWatershedTools } from "./agents/watershed/tools.js";
+import { registerBiodiversityTools } from "./agents/biodiversity/tools.js";
+import { registerPollutionTools } from "./agents/pollution/tools.js";
+import { registerAirTools } from "./agents/air/tools.js";
+import { registerPrompts } from "./agents/prompts.js";
 
 const server = new McpServer({
   name: "speak-for-the-trees",
-  version: "0.1.0",
+  version: "0.2.0",
 });
 
-registerWaterTool(server);
-registerSpeciesTool(server);
-registerTidalTool(server);
-registerEpaFacilitiesTool(server);
-registerEpaViolationsTools(server);
-registerImpairedWatersTool(server);
+registerWatershedTools(server);
+registerBiodiversityTools(server);
+registerPollutionTools(server);
+registerAirTools(server);
+registerPrompts(server);
 
 const transport = new StdioServerTransport();
 await server.connect(transport);

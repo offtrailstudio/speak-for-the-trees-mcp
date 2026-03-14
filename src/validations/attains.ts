@@ -3,7 +3,7 @@ import { z } from "zod";
 export const attainsFeatureAttributesSchema = z.object({
   assessmentunitidentifier: z.string().nullish(),
   assessmentunitname: z.string().nullish(),
-  reportingcycle: z.string().nullish(),
+  reportingcycle: z.union([z.string(), z.number()]).nullish().transform((v) => v != null ? String(v) : null),
   ircategory: z.string().nullish(),
   overallstatus: z.string().nullish(),
   isassessed: z.string().nullish(),

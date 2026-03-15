@@ -21,6 +21,18 @@ export { formatObservationsForPrompt } from "./inaturalist/summarize.js";
 export { fetchImpairedWaters } from "./attains/client.js";
 export { formatImpairedWatersForPrompt } from "./attains/summarize.js";
 
+// GBIF
+export { fetchGbifOccurrences } from "./gbif/client.js";
+export { formatGbifOccurrencesForPrompt } from "./gbif/summarize.js";
+
+// AirNow
+export { fetchAirQuality } from "./airnow/client.js";
+export { formatAirQualityForPrompt } from "./airnow/summarize.js";
+
+// TRI (Toxics Release Inventory)
+export { fetchTriFacilities, fetchTriReleases } from "./tri/client.js";
+export { formatTriFacilitiesForPrompt, formatTriReleasesForPrompt } from "./tri/summarize.js";
+
 // Location resolution
 export { resolveLocation } from "../resolve-location.js";
 

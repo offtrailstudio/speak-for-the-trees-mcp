@@ -39,7 +39,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup src/server.ts src/clients/index.ts --format esm --dts",
+    "build": "tsup src/server.ts src/clients/index.ts --format esm --dts --clean",
     "dev": "tsx src/server.ts",
     "test": "vitest run",
     "test:watch": "vitest",

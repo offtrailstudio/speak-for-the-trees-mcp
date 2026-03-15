@@ -12,7 +12,7 @@ There are examples around the world of ecosystems being granted legal personhood
 
 This MCP server is a starting point: a set of tools for investigating ecosystem health using public environmental data. Point it at any coordinates and query water quality, species observations, EPA compliance, tidal conditions, and impaired waters listings.
 
-No API keys needed — all data comes from free public APIs (USGS, EPA, NOAA, iNaturalist).
+Most tools require no API keys — data comes from free public APIs (USGS, EPA, NOAA, iNaturalist, GBIF). The `airnow_air_quality` tool requires a free AirNow API key ([register here](https://docs.airnowapi.org/)).
 
 ## Demo
 
@@ -51,13 +51,17 @@ These tools retrieve data about an ecosystem. All accept `latitude` and `longitu
 
 | Tool | Data source | What it returns |
 |------|------------|-----------------|
-| `query_water_conditions` | USGS NWIS | Temperature, dissolved oxygen, pH, streamflow with EPA thresholds |
-| `query_species_observations` | iNaturalist | Species presence records with taxonomy and threat status |
-| `query_tidal_conditions` | NOAA CO-OPS | Water levels, predictions, tidal range, deviation from predicted |
-| `query_epa_facilities` | EPA ECHO | Permitted dischargers, compliance status, violation counts |
-| `query_epa_violations` | EPA ECHO | Facilities in Significant Non-Compliance |
-| `query_violation_details` | EPA ECHO | Specific effluent violations (parameter, exceedance %, dates) |
-| `query_impaired_waters` | EPA ATTAINS | 303(d) listed waters, impairment causes, TMDL status |
+| `usgs_water_conditions` | USGS NWIS | Temperature, dissolved oxygen, pH, streamflow with EPA thresholds |
+| `noaa_tidal_conditions` | NOAA CO-OPS | Water levels, predictions, tidal range, deviation from predicted |
+| `inaturalist_species_observations` | iNaturalist | Species presence records with taxonomy, threat status, native/introduced flags |
+| `gbif_species_occurrences` | GBIF | Species occurrence records aggregated from museum collections, research, iNaturalist, eBird |
+| `airnow_air_quality` | AirNow | Current AQI readings by pollutant (PM2.5, PM10, ozone) with health category ratings |
+| `epa_facilities` | EPA ECHO | Permitted dischargers, compliance status, violation counts |
+| `epa_violations` | EPA ECHO | Facilities in Significant Non-Compliance |
+| `epa_violation_details` | EPA ECHO | Specific effluent violations (parameter, exceedance %, dates) |
+| `epa_impaired_waters` | EPA ATTAINS | 303(d) listed waters, impairment causes, TMDL status |
+| `tri_toxic_releases` | EPA TRI | TRI-reporting facilities and their annual chemical release obligations |
+| `tri_release_details` | EPA TRI | Per-chemical release amounts by medium (air, water, land) for specific facilities |
 
 ### Act
 
@@ -91,10 +95,13 @@ See [AGENT.md](AGENT.md) for the full investigation methodology, including epist
 | Source | API | What it provides |
 |--------|-----|-----------------|
 | USGS NWIS | [waterservices.usgs.gov](https://waterservices.usgs.gov/) | Real-time water quality monitoring |
-| EPA ECHO | [echo.epa.gov](https://echo.epa.gov/) | Discharge permits and compliance |
 | NOAA CO-OPS | [tidesandcurrents.noaa.gov](https://tidesandcurrents.noaa.gov/) | Tidal water levels |
 | iNaturalist | [api.inaturalist.org](https://api.inaturalist.org/) | Community science species observations |
+| GBIF | [gbif.org](https://www.gbif.org/) | Aggregated species occurrence records |
+| AirNow | [docs.airnowapi.org](https://docs.airnowapi.org/) | Real-time air quality index |
+| EPA ECHO | [echo.epa.gov](https://echo.epa.gov/) | Discharge permits and compliance |
 | EPA ATTAINS | [epa.gov/waterdata/attains](https://www.epa.gov/waterdata/attains) | Impaired waters assessments |
+| EPA TRI | [epa.gov/toxics-release-inventory-tri-program](https://www.epa.gov/toxics-release-inventory-tri-program) | Toxic chemical release reporting |
 | USGS NLDI | [api.water.usgs.gov/nldi](https://api.water.usgs.gov/nldi) | Hydrologic network navigation |
 
 ## License
